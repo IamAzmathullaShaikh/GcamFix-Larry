@@ -1,12 +1,3 @@
-##########################################################################################
-#
-# Magisk
-# by topjohnwu
-# 
-# This is a template zip for developers
-#
-##########################################################################################
-##########################################################################################
 # 
 # Instructions:
 # 
@@ -27,7 +18,7 @@
 
 # This will be the folder name under /magisk
 # This should also be the same as the id in your module.prop to prevent confusion
-MODID=template
+MODID=GcamFix-Larry
 
 # Set to true if you need to enable Magic Mount
 # Most mods would like it to be enabled
@@ -50,7 +41,7 @@ LATESTARTSERVICE=false
 
 print_modname() {
   ui_print "*******************************"
-  ui_print "     Magisk Module Template    "
+  ui_print "        GcamFix-Larry          "
   ui_print "*******************************"
 }
 
@@ -65,10 +56,11 @@ print_modname() {
 # You don't need to remove the example below, these values will be overwritten by your own list
 # This is an example
 REPLACE="
-/system/app/Youtube
-/system/priv-app/SystemUI
-/system/priv-app/Settings
-/system/framework
+/odm/lib64/libaiboost_te.so
+/odm/lib64/libportrait_repair_ppl3_ocl.so
+/odm/lib64/libsdk_sr.so
+/odm/lib64/libwrapper_te.so
+/odm/lib64/sr_models.bin
 "
 
 # Construct your own list here, it will overwrite the example
@@ -91,11 +83,13 @@ set_permissions() {
 
   # Some templates if you have no idea what to do:
 
-  # set_perm_recursive  <dirname>                <owner> <group> <dirpermission> <filepermission> <contexts> (default: u:object_r:system_file:s0)
-  # set_perm_recursive  $MODPATH/system/lib       0       0       0755            0644
+  # set_perm_recursive  <dirname>                             <owner> <group> <dirpermission> <filepermission> <contexts> (default: u:object_r:system_file:s0)
+  set_perm_recursive  $MODPATH/odm/lib64                         0       0       0755            0644
 
-  # set_perm  <filename>                         <owner> <group> <permission> <contexts> (default: u:object_r:system_file:s0)
-  # set_perm  $MODPATH/system/bin/app_process32   0       2000    0755         u:object_r:zygote_exec:s0
-  # set_perm  $MODPATH/system/bin/dex2oat         0       2000    0755         u:object_r:dex2oat_exec:s0
-  # set_perm  $MODPATH/system/lib/libart.so       0       0       0644
+  # set_perm  <filename>                                      <owner> <group> <permission> <contexts> (default: u:object_r:system_file:s0)
+  set_perm  $MODPATH/odm/lib64/libaiboost_te.so                  0       0       0644         
+  set_perm  $MODPATH/odm/lib64/libportrait_repair_ppl3_ocl.so    0       0       0644         
+  set_perm  $MODPATH/odm/lib64/libsdk_sr.so                      0       0       0644
+  set_perm  $MODPATH/odm/lib64/libwrapper_te.so                  0       0       0644
+  set_perm  $MODPATH/odm/lib64/sr_models.bin                     0       0       0644
 }
